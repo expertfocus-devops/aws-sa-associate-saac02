@@ -22,7 +22,7 @@ Notice that some of the users are actually applications (for example, DevApp1). 
 
 #### Federating existing users
 
-**Your users already have identities in a corporate directory**.
+##### Your users already have identities in a corporate directory.
 
 If your corporate directory is compatible with Security Assertion Markup Language 2.0 (SAML 2.0), you can configure your corporate directory to provide single-sign on (SSO) access to the AWS Management Console for your users.
 
@@ -30,6 +30,6 @@ If your corporate directory is not compatible with SAML 2.0, you can create an i
 
 If your corporate directory is Microsoft Active Directory, you can use [AWS Directory Service](https://aws.amazon.com/directoryservice/) to establish trust between your corporate directory and your AWS account.
 
-**Your users already have Internet identities**.
+#####Your users already have Internet identities.
 
 If you are creating a mobile app or web-based app that can let users identify themselves through an Internet identity provider like Login with Amazon, Facebook, Google, or any OpenID Connect (OIDC) compatible identity provider, the app can use federation to access AWS. For more information, see About web identity federation.
