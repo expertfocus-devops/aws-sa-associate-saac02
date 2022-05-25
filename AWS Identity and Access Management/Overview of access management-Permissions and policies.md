@@ -23,3 +23,6 @@ The following example shows a JSON policy that allows any attached user to sign 
     } ]
 }
 ```
+Actions or resources that are not explicitly allowed are denied by default. For example, if the preceding policy is the only policy that is attached to a user, then that user is allowed only to sign in to the AWS Management Console with read-only access to IAM data. Actions on all other IAM funtions (create/modify users or groups etc) are prohibited. Similarly, the user is not allowed to perform any actions in Amazon EC2, Amazon S3, or in any other AWS service. The reason is that permissions to work with those services are not included in the policy.
+
+### Policies and groups
