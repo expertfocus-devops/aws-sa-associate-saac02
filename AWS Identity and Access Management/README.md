@@ -106,3 +106,17 @@ The following policy types, listed in order from most frequently used to less fr
 1.The requested resource exists in the trusting account (AccountB). When AWS evaluates this account, it checks the resource-based policy that is attached to the requested resource and any policies that can limit a resource-based policy.
 
 1.AWS allows the request only if both account policy evaluations allow the request.
+
+### Actions or operations
+
+After your request has been authenticated and authorized, AWS approves the actions or operations in your request. Operations are defined by a service, and include things that you can do to a resource, such as viewing, creating, editing, and deleting that resource. For example, IAM supports approximately 40 actions for a user resource, including the following actions:
+
+* CreateUser
+
+* DeleteUser
+
+* GetUser
+
+* UpdateUser
+
+To allow a principal to perform an operation, you must include the necessary actions in a policy that applies to the principal or the affected resource. To see a list of actions, resource types, and condition keys supported by each service, see [Actions, Resources, and Condition Keys for AWS Services](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html).
