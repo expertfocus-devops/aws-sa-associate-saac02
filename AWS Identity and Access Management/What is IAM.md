@@ -51,7 +51,8 @@ The IAM resource objects that AWS uses for authentication. These include IAM use
 A person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS. Principals include federated users and assumed roles.
 
 ### Principal
+```
 A principal is a person or application that can make a request for an action or operation on an AWS resource. The principal is authenticated as the AWS account root user or an IAM entity to make requests to AWS.You can also support federated users or programmatic access to allow an application to access your AWS account.
-
+```
 
 
