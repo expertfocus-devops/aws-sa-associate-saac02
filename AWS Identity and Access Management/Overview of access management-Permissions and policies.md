@@ -26,3 +26,16 @@ The following example shows a JSON policy that allows any attached user to sign 
 Actions or resources that are not explicitly allowed are denied by default. For example, if the preceding policy is the only policy that is attached to a user, then that user is allowed only to sign in to the AWS Management Console with read-only access to IAM data. Actions on all other IAM funtions (create/modify users or groups etc) are prohibited. Similarly, the user is not allowed to perform any actions in Amazon EC2, Amazon S3, or in any other AWS service. The reason is that permissions to work with those services are not included in the policy.
 
 ### Policies and groups
+You can organize IAM users into IAM groups and attach a policy to a group. In that case, individual users still have their own credentials, but all the users in a group have the permissions that are attached to the group. Use groups for easier permissions management.
+
+![Image](images/iam-intro-users-and-groups.diagram.png
+)
+
+Users or groups can have multiple policies attached to them that grant different permissions. In that case, the permissions for the users are calculated based on the combination of policies. But the basic principle still applies: If the user has not been granted an explicit permission for an action and a resource, the user does not have those permissions.
+
+### Federated users and roles
+
+Federated users don't have permanent identities in your AWS account the way that IAM users do. To assign permissions to federated users, you can create an entity referred to as a role and define permissions for the role. When a federated user signs in to AWS, the user is associated with the role and is granted the permissions that are defined in the role.
+
+![Image](images/Federated-users-and-roles.png)
+)
