@@ -71,3 +71,5 @@ AWS gathers the request information into a *request context*, which is used to e
 ### Authentication
 A principal must be authenticated (signed in to AWS) using their credentials to send a request to AWS. Some services, such as Amazon S3 and AWS STS, allow a few requests from anonymous users. However, they are the exception to the rule.
 
+To authenticate from the *console as a root user, you must sign in with your email address and password*. As an *IAM user, provide your account ID or alias, and then your user name and password*. To authenticate from the *API or AWS CLI, you must provide your access key and secret key*. You might also be required to provide additional security information. For example, AWS recommends that you use multi-factor authentication (MFA) to increase the security of your account.
+
