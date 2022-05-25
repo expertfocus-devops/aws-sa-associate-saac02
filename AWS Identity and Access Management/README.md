@@ -95,3 +95,14 @@ The following policy types, listed in order from most frequently used to less fr
 
 ### Policy Evaluation Logic - Same Account
 ![Image](images/PolicyEvaluation1.PNG)
+
+### Policy Evaluation Logic - Cross Account
+![Image](images/PolicyEvaluation2.PNG)
+
+1.When a principal in one account makes a request to access a resource in another account, this is a cross-account request.
+
+1.The requesting principal exists in the trusted account (AccountA). When AWS evaluates this account, it checks the identity-based policy and any policies that can limit an identity-based policy. 
+
+1.The requested resource exists in the trusting account (AccountB). When AWS evaluates this account, it checks the resource-based policy that is attached to the requested resource and any policies that can limit a resource-based policy.
+
+1.AWS allows the request only if both account policy evaluations allow the request.
