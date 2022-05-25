@@ -20,3 +20,17 @@ Here are some ways to do that:
 * If you do have an access key for your AWS account root user, delete it. If you must keep it, rotate (change) the access key regularly. To delete or rotate your root user access keys, go to the [My Security Credentials](https://console.aws.amazon.com/iam/home?#security_credential) page in the AWS Management Console and sign in with your account's email address and password. You can manage your access keys in the Access keys section.
 * Use a strong password to help protect account-level access to the AWS Management Console.
 * Enable AWS multi-factor authentication **(MFA)** on your AWS account root user account.
+
+## Understanding how IAM works
+
+Before you create users, you should understand how IAM works. IAM provides the infrastructure necessary to control authentication and authorization for your account. The IAM infrastructure includes the following elements:
+
+* Terms
+* Principal
+* Request
+* Authentication
+* Authorization
+* Actions or operations
+* Resources
+
+<Image src="images/how-iam-workd.png" alt="img" width="500"/>
