@@ -33,4 +33,4 @@ Before you create users, you should understand how IAM works. IAM provides the i
 * Actions or operations
 * Resources
 
-<Image src="images/how-iam-workd.png" alt="img" width="500"/>
+![Image](images/how-iam-workd.png)
