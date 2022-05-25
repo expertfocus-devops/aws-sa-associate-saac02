@@ -39,3 +39,21 @@ Federated users don't have permanent identities in your AWS account the way that
 
 ![Image](images/Federated-users-and-roles.png)
 )
+
+### Identity-based and resource-based policies
+
+Identity-based policies are permissions policies that you attach to an IAM identity, such as an IAM user, group, or role. Resource-based policies are permissions policies that you attach to a resource such as an Amazon S3 bucket or an IAM role trust policy.
+
+**Identity-based policies** control what actions the identity can perform, on which resources, and under what conditions. Identity-based policies can be further categorized:
+
+* Managed policies – Standalone identity-based policies that you can attach to multiple users, groups, and roles in your AWS account. You can use two types of managed policies:
+
+    * AWS managed policies – Managed policies that are created and managed by AWS. If you are new to using policies, its recommend that you start by using AWS managed policies.
+
+    * Customer managed policies – Managed policies that you create and manage in your AWS account. Customer managed policies provide more precise control over your policies than AWS managed policies. You can create, edit, and validate an IAM policy in the visual editor or by creating the JSON policy document directly.
+
+* Inline policies – Policies that you create and manage and that are embedded directly into a single user, group, or role. In most cases, we don't recommend using inline policies.
+
+**Resource-based policies** control what actions a specified principal can perform on that resource and under what conditions. Resource-based policies are inline policies, and there are no managed resource-based policies. To enable cross-account access, you can specify an entire account or IAM entities in another account as the principal in a resource-based policy.
+
+The IAM service supports only one type of resource-based policy called a role trust policy, which is attached to an IAM role. Because an IAM role is both an identity and a resource that supports resource-based policies, you must attach both a trust policy and an identity-based policy to an IAM role. Trust policies define which principal entities (accounts, users, roles, and federated users) can assume the role.
