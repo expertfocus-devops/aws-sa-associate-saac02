@@ -78,7 +78,7 @@ You must also be authorized (allowed) to complete your request. During authoriza
 
 There are several types of policies that can affect whether a request is authorized. To provide your users with **permissions to access the AWS resources in their own account**, you need only **identity-based policies**. **Resource-based policies** are popular for granting **cross-account access**.
 
-## Policy types
+#### Policy types
 The following policy types, listed in order from most frequently used to less frequently used, are available for use in AWS. For more details, see the sections below for each policy type.
 
 **Identity-based policies** – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). Identity-based policies grant permissions to an identity.
