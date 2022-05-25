@@ -71,5 +71,27 @@ AWS gathers the request information into a *request context*, which is used to e
 ### Authentication
 A principal must be authenticated (signed in to AWS) using their credentials to send a request to AWS. Some services, such as Amazon S3 and AWS STS, allow a few requests from anonymous users. However, they are the exception to the rule.
 
-To authenticate from the *console as a root user, you must sign in with your email address and password*. As an *IAM user, provide your account ID or alias, and then your user name and password*. To authenticate from the *API or AWS CLI, you must provide your access key and secret key*. You might also be required to provide additional security information. For example, AWS recommends that you use multi-factor authentication (MFA) to increase the security of your account.
+To authenticate from the console as a **root user**, you must sign in with your email address and password*. As an **IAM user**, provide your account ID or alias, and then your user name and password*. To authenticate from the **API or AWS CLI**, you must provide your access key and secret key*. You might also be required to provide additional security information. For example, AWS recommends that you use multi-factor authentication (MFA) to increase the security of your account.
 
+### Authorization
+You must also be authorized (allowed) to complete your request. During authorization, AWS uses values from the request context to check for policies that apply to the request. It then uses the policies to determine whether to allow or deny the request. 
+
+There are several types of policies that can affect whether a request is authorized. To provide your users with **permissions to access the AWS resources in their own account**, you need only **identity-based policies**. **Resource-based policies** are popular for granting **cross-account access**.
+
+## Policy types
+The following policy types, listed in order from most frequently used to less frequently used, are available for use in AWS. For more details, see the sections below for each policy type.
+
+**Identity-based policies** – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). Identity-based policies grant permissions to an identity.
+
+**Resource-based policies** – Attach inline policies to resources. The most common examples of resource-based policies are Amazon S3 bucket policies and IAM role trust policies. Resource-based policies grant permissions to the principal that is specified in the policy. Principals can be in the same account as the resource or in other accounts.
+
+**Permissions boundaries** – Use a managed policy as the permissions boundary for an IAM entity (user or role). That policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions. Permissions boundaries do not define the maximum permissions that a resource-based policy can grant to an entity.
+
+**Organizations SCPs** – Use an AWS Organizations service control policy (SCP) to define the maximum permissions for account members of an organization or organizational unit (OU). SCPs limit permissions that identity-based policies or resource-based policies grant to entities (users or roles) within the account, but do not grant permissions.
+
+**Access control lists (ACLs)** – Use ACLs to control which principals in other accounts can access the resource to which the ACL is attached. ACLs are similar to resource-based policies, although they are the only policy type that does not use the JSON policy document structure. ACLs are cross-account permissions policies that grant permissions to the specified principal. ACLs cannot grant permissions to entities within the same account.
+
+**Session policies** – Pass advanced session policies when you use the AWS CLI or AWS API to assume a role or a federated user. Session policies limit the permissions that the role or user's identity-based policies grant to the session. Session policies limit permissions for a created session, but do not grant permissions. For more information, see Session Policies.
+
+### Policy Evaluation Logic - Same Account
+![Image](images/PolicyEvaluation1.PNG)
