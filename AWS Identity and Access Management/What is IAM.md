@@ -34,3 +34,29 @@ Before you create users, you should understand how IAM works. IAM provides the i
 * Resources
 
 ![Image](images/how-iam-workd.png)
+
+### Terms
+
+
+**IAM Resources**
+```bash
+The user, group, role, policy, and identity provider objects that are stored in IAM. As with other AWS services, you can add, edit, and remove resources from IAM.
+```
+**IAM Identities**
+```bash
+The IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. These include users, groups, and roles.
+```
+**IAM Entities**
+```bash
+The IAM resource objects that AWS uses for authentication. These include IAM users and roles.
+```
+**Principals**
+```bash
+A person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS. Principals include federated users and assumed roles.
+```
+### Principal
+```bash
+A principal is a person or application that can make a request for an action or operation on an AWS resource. The principal is authenticated as the AWS account root user or an IAM entity to make requests to AWS.You can also support federated users or programmatic access to allow an application to access your AWS account.
+```
+
+
