@@ -93,10 +93,10 @@ The following policy types, listed in order from most frequently used to less fr
 
 **Session policies** – Pass advanced session policies when you use the AWS CLI or AWS API to assume a role or a federated user. Session policies limit the permissions that the role or user's identity-based policies grant to the session. Session policies limit permissions for a created session, but do not grant permissions. For more information, see Session Policies.
 
-### Policy Evaluation Logic - Same Account
+#### Policy Evaluation Logic - Same Account
 ![Image](images/PolicyEvaluation1.PNG)
 
-### Policy Evaluation Logic - Cross Account
+#### Policy Evaluation Logic - Cross Account
 ![Image](images/PolicyEvaluation2.PNG)
 
 1.When a principal in one account makes a request to access a resource in another account, this is a cross-account request.
