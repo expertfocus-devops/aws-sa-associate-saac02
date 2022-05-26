@@ -53,5 +53,6 @@
    * cm-hr-bucket-policy - allow access only to HR bucket
 1. Login to one account and check access to S3 buckets.
 1. Attached policies:
-    * Attach S3 Full Access AWS Managed policy to both users.And check access by login to console/cli.
-    * Attach finance-bucket-policy to David and hr-bucket-policy to Jessica.Check access.
+    * Attach S3 Full Access AWS Managed policy to both users.And check access by login to console/cli.Then remove this policy from both users.
+    * Attach finance-bucket-policy to David and hr-bucket-policy to Jessica.Check access.Then remove policies from both users.
+    * Then attach the respective policy with Finance and HR groups.
