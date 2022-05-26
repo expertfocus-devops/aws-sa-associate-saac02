@@ -45,15 +45,20 @@
 1. Create two IAM Groups:
     * Finance
     * HR
-1. Create two S3 buckets:
+1. Create three S3 buckets:
     * xxxx-financebucket
     * xxxx-hrbucket
+    * xxxx-tem-bucket
 1. Create two IAM customer managed plociy documents:
    * cm-finance-bucket-policy - allow access only to Finance bucket
    * cm-hr-bucket-policy - allow access only to HR bucket
 1. Login to one account and check access to S3 buckets.
 1. Attached policies:
     * Attach S3 Full Access AWS Managed policy to both users.And check access by login to console/cli.Then remove this policy from both users.
-    * Attach finance-bucket-policy to David and hr-bucket-policy to Jessica.Check access.Then remove policies from both users.
+    * Attach finance-bucket-policy to David and hr-bucket-policy to Jessica.Check access.
+        * Attache hr-bucket-policy also to David and check.
+        * Then remove policies from both users.
     * Then attach the respective policy with Finance and HR groups.Add David to Finance group and Jessica to HR group.Check S3 access for both users.
         * Attach cm-hr-bucket-policy also to Finance group.Then S3 access for David.
+1. Create an Inline policy for David.(access to xxxx-tem-bucket)
+
