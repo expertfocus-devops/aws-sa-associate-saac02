@@ -48,7 +48,7 @@
 1. Create three S3 buckets:
     * xxxx-financebucket
     * xxxx-hrbucket
-    * xxxx-tem-bucket
+    * xxxx-temp-bucket
 1. Create two IAM customer managed plociy documents:
    * cm-finance-bucket-policy - allow access only to Finance bucket
    * cm-hr-bucket-policy - allow access only to HR bucket
