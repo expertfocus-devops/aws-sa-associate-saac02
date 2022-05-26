@@ -5,12 +5,12 @@
    "Version":"2012-10-17",
    "Statement":[
       {
-         "Sid":"statement1", <--- Sid=Statement ID
+         "Sid":"statement1", <--- Sid=Statement ID**
          "Effect":"Allow",   <--- Effect=Allow/Deny 
          "Action":[          <--- Action=Resource actions 
             "s3:*"
          ],
-         "Resource":[        <--- Resource=Object that exists within a service
+         "Resource":[        <--- Resource=Object that exists within a service (Ec2,IAM,S3..)
             "arn:aws:s3:::*"
          ]
        },
@@ -26,16 +26,4 @@
 ```
 ### Statement Fields
 
-```json
-      {
-         "Sid":"statement1",  
-         "Effect":"Allow",
-         "Action":[
-            "s3:*"
-         ],
-         "Resource":[
-            "arn:aws:s3:::*"
-         ]
-       },
-```
 
