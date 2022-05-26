@@ -48,9 +48,9 @@
 1. Create two S3 buckets:
     * xxxx-financebucket
     * xxxx-hrbucket
-1. Create two IAM plociy documents:
-   * finance-bucket-policy - allow access only to Finance bucket
-   * hr-bucket-policy - allow access only to HR bucket
+1. Create two IAM customer managed plociy documents:
+   * cm-finance-bucket-policy - allow access only to Finance bucket
+   * cm-hr-bucket-policy - allow access only to HR bucket
 1. Login to one account and check access to S3 buckets.
 1. Attached policies:
     * Attach S3 Full Access AWS Managed policy to both users.And check access by login to console/cli.
