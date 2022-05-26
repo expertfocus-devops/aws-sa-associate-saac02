@@ -56,3 +56,4 @@
     * Attach S3 Full Access AWS Managed policy to both users.And check access by login to console/cli.Then remove this policy from both users.
     * Attach finance-bucket-policy to David and hr-bucket-policy to Jessica.Check access.Then remove policies from both users.
     * Then attach the respective policy with Finance and HR groups.Add David to Finance group and Jessica to HR group.Check S3 access for both users.
+        * Attach cm-hr-bucket-policy also to Finance group.Then S3 access for David.
