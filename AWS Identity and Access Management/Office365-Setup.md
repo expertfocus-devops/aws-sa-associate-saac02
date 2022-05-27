@@ -107,6 +107,40 @@
 
     ![image](images/office365/19.png)
 
+1. Head back to your DNS management console.
+
+    Create three DNS records as mentinoed below.Use the values provided on your Office365 setup wizard page.
+
+    ![image](images/office365/20.png)
+
+    ![image](images/office365/21.png)
+    
+    ![image](images/office365/22.png)
+
+    Now you need to wait sometime for DNS to propergate.
+    You can check the DNS propagation update on this website.
+
+    Replace the last url path section with your domain name.
+
+    https://www.whatsmydns.net/#MX/yourdomain.xyz
+
+    https://www.whatsmydns.net/#TXT/yourdomain.xyz
+
+    https://www.whatsmydns.net/#CNAME/autodiscover.yourdomain.xyz
+
+1. Head back to Office365 setup wizard page and click on **Continue**.
+    ![image](images/office365/23.png)
+
+    Your setup wizard is completed now.Click on **Go to admin center** to access the Office365 admin center portal.
+
+    ![image](images/office365/24.png)
+
+
+
+
+
+
+
 
 
 
