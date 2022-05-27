@@ -60,10 +60,53 @@
 
     ![image](images/office365/11.png)
 
-1. Note the TXT record information metioned on the page.
+1. Note the TXT record information metioned on the page.Dont click on **Verify** at this stage.You need to update this on our domain's DNS records.
 
     ![image](images/office365/12.png)
 
 1. Login to your DNS hosting provider account.[Cloudflare](https://dash.cloudflare.com/login/).
+
+    * Select your domain on the Home page.
+    * Click **DNS** on the left pannel.
+
+1. On DNS page click on **Add record**.
+
+    ![image](images/office365/13.png)
+
+    * **Type** = TXT
+    * **Name** = @
+    * **TTL** = 1hr
+    * **Content** = TXT value from the Office365 setup wizard.
+
+    ![image](images/office365/14.png)
+
+    Click on **Save**.
+
+    Now you need to wait sometime for DNS to propergate.
+    You can check the DNS propagation update on this website.
+
+    https://www.whatsmydns.net/#TXT/yourdomainname.
+
+    Replace the last url path section with your domain name.
+
+    Ex: https://www.whatsmydns.net/#TXT/awscsa18.xyz
+
+1. When you see it has propagated to many locations, go back to Office365 wizard page. And now click on **Verify**.
+
+    ![image](images/office365/15.png)
+
+1. Click on **Do this later** on this page.We can create users later.
+
+    ![image](images/office365/16.png)
+
+1. On this page, select the 2nd option.(**Add your own DNS records**) Click **Continue**.
+
+    ![image](images/office365/17.png)
+
+1. On this page exapnd the **MX Records** , **CNAME Records**, **TXT Records** sections. We need to create these records in your DNS hosting provider account.[Cloudflare](https://dash.cloudflare.com/login/). 
+
+    ![image](images/office365/19.png)
+
+
 
 
