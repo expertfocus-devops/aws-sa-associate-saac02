@@ -61,13 +61,3 @@
     * Then attach the respective policy with Finance and HR groups.Add David to Finance group and Jessica to HR group.Check S3 access for both users.
         * Attach cm-hr-bucket-policy also to Finance group.Then S3 access for David.
 1. Create an Inline policy for David.(access to xxxx-tem-bucket)
-
-### Guidelines
-
-1. Login to your AWS account (General) as the iamadminuser.
-1. Navigate to IAM section on the [console](https://us-east-1.console.aws.amazon.com/iamv2/home?region=us-east-1#/home).
-1.Click on "Users" in the left hand side menu.
-
-![image](images/practical1/1.png)
-
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=wRzzBb18qUw&ab_channel=AmazonWebServices)
