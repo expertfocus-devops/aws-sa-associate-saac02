@@ -1,0 +1,186 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This template deploys a VPC in us-east1, with a pair of public and private subnets spread across two AZs. It deploys an internet gateway, with a default route on the public subnets, a Linux t2.micro Instance with Security Group with open HTTP access and an Apache Web Server with a simple website.",
+    "Resources": {
+        "VPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "10.0.0.0/16",
+                "EnableDnsSupport": true,
+                "EnableDnsHostnames": true,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18"
+                    }
+                ]
+            }
+        },
+        "InternetGateway": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18"
+                    }
+                ]
+            }
+        },
+        "InternetGatewayAttachment": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "InternetGatewayId": "InternetGateway",
+                "VpcId": "VPC"
+            }
+        },
+        "PublicSubnet1": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": "VPC",
+                "AvailabilityZone": [
+                    0,
+                    null
+                ],
+                "CidrBlock": "10.0.1.0/24",
+                "MapPublicIpOnLaunch": true,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18 Public Subnet 1"
+                    }
+                ]
+            }
+        },
+        "PublicSubnet2": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": "VPC",
+                "AvailabilityZone": [
+                    1,
+                    null
+                ],
+                "CidrBlock": "10.0.2.0/24",
+                "MapPublicIpOnLaunch": true,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18 Public Subnet 2"
+                    }
+                ]
+            }
+        },
+        "PrivateSubnet1": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": "VPC",
+                "AvailabilityZone": [
+                    0,
+                    null
+                ],
+                "CidrBlock": "10.0.11.0/24",
+                "MapPublicIpOnLaunch": false,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18 Private Subnet 1"
+                    }
+                ]
+            }
+        },
+        "PrivateSubnet2": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": "VPC",
+                "AvailabilityZone": [
+                    1,
+                    null
+                ],
+                "CidrBlock": "10.0.12.0/24",
+                "MapPublicIpOnLaunch": false,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18 Private Subnet 2"
+                    }
+                ]
+            }
+        },
+        "PublicRouteTable": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": "VPC",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "VPC Blog Public Routes"
+                    }
+                ]
+            }
+        },
+        "DefaultPublicRoute": {
+            "Type": "AWS::EC2::Route",
+            "DependsOn": "InternetGatewayAttachment",
+            "Properties": {
+                "RouteTableId": "PublicRouteTable",
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": "InternetGateway"
+            }
+        },
+        "PublicSubnet1RouteTableAssociation": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": "PublicRouteTable",
+                "SubnetId": "PublicSubnet1"
+            }
+        },
+        "PublicSubnet2RouteTableAssociation": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": "PublicRouteTable",
+                "SubnetId": "PublicSubnet2"
+            }
+        },
+        "WebServerSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Web Server Traffic",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "VpcId": "VPC"
+            }
+        },
+        "EC2Instance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-0e1d30f2c40c4c701",
+                "InstanceType": "t2.micro",
+                "SubnetId": "PublicSubnet1",
+                "SecurityGroupIds": [
+                    "WebServerSecurityGroup"
+                ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AWS-CSA-18 EC2"
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": "#!/bin/bash\nyum install httpd -y\nservice httpd start  \necho \"<html><body><h1>Hello from AWS-CSA-18<h1></body></html>\" > /var/www/html/index.html\n"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "PublicIp": {
+            "Description": "EC2 Instance Public Ip",
+            "Value": "EC2Instance.PublicIp"
+        }
+    }
+}
