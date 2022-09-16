@@ -1,0 +1,126 @@
+## Configure AWS CLI for General account iamadminuser:
+
+## Open your terminal (powershell/bash):
+
+PS C:\Users\admin> aws configure --profile iamadminuser-g
+PS C:\Users\admin> AWS Access Key ID [None]: enter your access key
+PS C:\Users\admin> AWS Secret Access Key [None]: enter your secret access key
+PS C:\Users\admin> Default region name [None]: press enter
+PS C:\Users\admin> Default output format [None]: press enter
+
+It will be saved here.
+
+C:\Users\admin\.aws
+
+## Test you cli setup.Type below command and if you dont get any errors, you are good to go.
+
+PS C:\Users\admin> aws s3 ls --profile iamadminuser-g
+
+## Create the IAM user Jessica via AWS CLI.
+
+PS C:\Users\admin> aws iam create-user --user-name Jessica
+
+If the command sussecceded you will get an out like below.
+
+{
+    "User": {
+        "Path": "/",
+        "UserName": "Jessica",
+        "UserId": "AIDAZJRHPMFQOBV2PYOYQ",
+        "Arn": "arn:aws:iam::638959182176:user/Jessica",
+        "CreateDate": "2022-05-27T07:31:15+00:00"
+    }
+}
+
+## To create an access key for an IAM user
+
+PS C:\Users\admin> aws iam create-access-key --user-name Bob --profile iamadminuser-g
+
+If the command sussecceded you will get an out like below with the AccessKeyId and the SecretAccessKey.Note it down, because you cant see the SecretAccessKey again.
+
+{
+    "AccessKey": {
+        "UserName": "Jessica",
+        "AccessKeyId": "AKIAZJRHPMFQAHXANL5A",
+        "Status": "Active",
+        "SecretAccessKey": "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",
+        "CreateDate": "2022-05-27T07:34:31+00:00"
+    }
+}
+
+
+## Create IAM groups.
+
+PS C:\Users\admin> aws iam create-group --group-name HR --profile iamadminuser-g
+
+If the command sussecceded you will get an out like below
+
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "HR",
+        "GroupId": "AGPAZJRHPMFQCI5CLIFCG",
+        "Arn": "arn:aws:iam::638959182176:group/HR",
+        "CreateDate": "2022-05-27T07:45:35+00:00"
+    }
+}
+
+## To add a user to an IAM group
+
+PS C:\Users\admin> aws iam add-user-to-group --user-name Jessica --group-name HR --profile iamadminuser-g
+
+If you dont get any errors, user added to the group successfully.
+
+## To check:
+
+PS C:\Users\admin> aws iam list-groups --profile iamadminuser-g
+
+PS C:\Users\admin> aws iam list-groups-for-user --user-name Jessica --profile iamadminuser-g
+
+PS C:\Users\admin> aws iam get-group --group-name HR --profile iamadminuser-g
+
+## Create S3 bucket:
+
+PS C:\Users\admin> aws s3api create-bucket --bucket xxxx-financebucket --region us-east-1 --profile iamadminuser-g
+
+Below commands use aws se command:
+
+ls                                       | website
+cp                                       | mv
+rm                                       | sync
+mb                                       | rb
+presign
+
+## Create IAM customer managed policy.
+
+-----------------------cm-finance-bucket-policy.json-------------------
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::xxxx-financebucket",
+                "arn:aws:s3:::xxxx-financebucket/*"
+            ]
+        }
+    ]
+}
+--------------------------------------------------
+
+
+PS C:\Users\admin> aws iam create-policy --policy-name cm-test-bucket-policy --policy-document file://cm-finance-bucket-policy.json --profile iamadminuser-g
+
+ARN is important on the output.
+
+PS C:\Users\admin> aws iam attach-user-policy --policy-arn arn:aws:iam::638959182176:policy/cm-test-bucket-policy --user-name Bob --profile iamadminuser-g
+
