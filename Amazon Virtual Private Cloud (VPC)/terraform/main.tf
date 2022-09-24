@@ -43,13 +43,13 @@ resource "aws_route_table" "private" {
   }
 }
 
-# resource "aws_route" "private" {
-#   count = length(var.private_subnet_cidr_blocks)
+resource "aws_route" "private" {
+  count = length(var.private_subnet_cidr_blocks)
 
-#   route_table_id         = aws_route_table.private[count.index].id
-#   destination_cidr_block = "0.0.0.0/0"
-#   nat_gateway_id         = aws_nat_gateway.terraform-vpc[count.index].id
-# }
+  route_table_id         = aws_route_table.private[count.index].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.terraform-vpc[count.index].id
+}
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.terraform-vpc.id
@@ -107,21 +107,21 @@ resource "aws_route_table_association" "public" {
 
 # NAT resources: This will create 2 NAT gateways in 2 Public Subnets for 2 different Private Subnets.
 
-# resource "aws_eip" "nat" {
-#   count = length(var.public_subnet_cidr_blocks)
+resource "aws_eip" "nat" {
+  count = length(var.public_subnet_cidr_blocks)
 
-#   vpc = true
-# }
+  vpc = true
+}
 
-# resource "aws_nat_gateway" "terraform-vpc" {
-#   depends_on = [aws_internet_gateway.terraform-vpc]
+resource "aws_nat_gateway" "terraform-vpc" {
+  depends_on = [aws_internet_gateway.terraform-vpc]
 
-#   count = length(var.public_subnet_cidr_blocks)
+  count = length(var.public_subnet_cidr_blocks)
 
-#   allocation_id = aws_eip.nat[count.index].id
-#   subnet_id     = aws_subnet.public[count.index].id
+  allocation_id = aws_eip.nat[count.index].id
+  subnet_id     = aws_subnet.public[count.index].id
 
-#   tags = {
-#       Name = "terraform-vpc-ng"
-#   }
-# }
+  tags = {
+      Name = "terraform-vpc-ng"
+  }
+}
