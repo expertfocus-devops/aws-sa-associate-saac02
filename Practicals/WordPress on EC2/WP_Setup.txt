@@ -1,0 +1,69 @@
+apt update
+apt install apache2           #Apache/2.4.41 (Ubuntu)
+--------------------------------------------------------
+
+apt install mysql-server      #8.0.25-0ubuntu0.20.04.1 (Ubuntu)
+
+mysql_secure_installation     #password - Wordpress@22
+--------------------------------------------------------
+
+apt install php libapache2-mod-php php-mysql      #7.4.3 (cli)
+
+-------------------------------
+
+CREATE USER 'wpuser'@'%' IDENTIFIED BY 'wpuser@22';
+
+CREATE DATABASE wordpressdb;
+
+GRANT ALL PRIVILEGES ON wordpressdb.* TO 'wpuser'@'%';
+
+--------------------------------------------------------------------
+apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+
+phpenmod mbstring
+
+systemctl restart apache2
+
+http://ip/phpmyadmin
+---------------------------------------------------------------------
+
+cd /tmp && wget https://wordpress.org/latest.tar.gz
+
+tar -xvf latest.tar.gz
+
+mkdir -p /var/www/html/wordpress 
+
+cp -R wordpress /var/www/html/
+
+chown -R www-data:www-data /var/www/html/wordpress/
+
+chmod -R 755 /var/www/html/wordpress/
+
+---------------------------------------------------
+
+vi /etc/apache2/sites-available/wordpress.conf
+
+<VirtualHost *:80>
+    ServerName wordpress.awscsa18.xyz
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/wordpress 
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+  <Directory /var/www/html/wordpress/>
+       Options FollowSymlinks
+       AllowOverride All
+       Require all granted
+  </Directory>
+</VirtualHost>
+
+
+
+-------------------------------------------------
+
+a2ensite wordpress.conf
+
+apachectl configtest	
+
+--------------------------------------------------
+
